@@ -1,19 +1,11 @@
 package ru.java.courses;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-import javax.swing.tree.TreeCellEditor;
 
 public class Lesson11to12_SetMap {
 
@@ -65,10 +57,9 @@ public class Lesson11to12_SetMap {
      * 4. Возвращаем последнего пользователя
      */
     public static User task1(Collection<User> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-
-        return null;
+        Comparator<User> comparator = Comparator.comparing(User::getName).thenComparing(User::getAge);
+        return source.stream().sorted(comparator)
+                .collect(Collectors.toCollection(() -> new TreeSet<>(comparator))).last();
     }
 
     /**
@@ -79,10 +70,7 @@ public class Lesson11to12_SetMap {
      * 4. Вернуть количество записей в справочнике
      */
     public static int task2(Collection<User> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-
-       return 0;
+        return source.stream().collect(Collectors.toMap(User::getPhone, p -> p, (p, q) -> p)).size();
     }
 
 
@@ -93,14 +81,14 @@ public class Lesson11to12_SetMap {
      * 3. Все книги должны быть отсортированы по алфавиту с первой до последней полки
      * 4. Количество полок константное - 5 штук
      * 5. Вернуть книги распределенные по полкам
-     *
+     * <p>
      * Нумерация полок начинается с единицы!
      */
     public static Map task3(Collection<String> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-
-        return null;
+        int booksOnShelf = source.size() / 5;
+        AtomicInteger counter = new AtomicInteger();
+        return source.stream().sorted()
+                .collect(Collectors.groupingBy(s -> counter.getAndIncrement() / booksOnShelf + 1));
     }
 
 
@@ -110,8 +98,7 @@ public class Lesson11to12_SetMap {
      * 5. Вернуть справочник [название книги -> номер полки]
      */
     public static Map task4(Map<Integer, String> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-        return null;
+        return source.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 }

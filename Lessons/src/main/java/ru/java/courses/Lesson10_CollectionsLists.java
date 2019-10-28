@@ -1,9 +1,8 @@
 package ru.java.courses;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lesson10_CollectionsLists {
 
@@ -19,9 +18,11 @@ public class Lesson10_CollectionsLists {
      * Удалять элементы из итерируемого списка нельзя - выпадет исключение
      */
     public static List<String> task1(List<Integer> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-        return null;
+        return source.stream()
+                .distinct()
+                .sorted()
+                .map(Object::toString)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -34,8 +35,9 @@ public class Lesson10_CollectionsLists {
      * Подсказка: на входе может быть любое количество чисел
      */
     public static List<Integer> task2(Integer... array) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-        return null;
+        return Arrays.stream(array)
+                .map(s -> s % 2 == 0 ? ++s : s)
+                .collect(Collectors.toList())
+                .subList(3, Math.min(8, array.length));
     }
 }

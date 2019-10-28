@@ -1,5 +1,8 @@
 package ru.java.courses;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 class Lesson2 {
 
     /**
@@ -12,7 +15,7 @@ class Lesson2 {
      * хвост отбрасываем без откругления
      */
     static int formula(int x) {
-        return 0;
+        return (int) Math.sqrt(13 * x + 13. / x);
     }
 
     /**
@@ -29,7 +32,9 @@ class Lesson2 {
      * @return возвращаем инициалы в верхнем регистре разделенные точкой, как в примере выше
      */
     static String initials(String fullName) {
-        return null;
+        return Arrays.stream(fullName.split(" "))
+                .map(s -> s.substring(0, 1) + ".")
+                .collect(Collectors.joining()).toUpperCase();
     }
 
 }

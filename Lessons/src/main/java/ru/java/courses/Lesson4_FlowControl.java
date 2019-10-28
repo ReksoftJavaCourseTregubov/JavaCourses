@@ -1,7 +1,5 @@
 package ru.java.courses;
 
-import java.sql.SQLOutput;
-
 public class Lesson4_FlowControl {
 
     /**
@@ -19,7 +17,15 @@ public class Lesson4_FlowControl {
      * @return самую длинную строку из полученного массива
      */
     public static String task1(String[] strings) {
-        return null;
+        int maxLength = 0;
+        String longestString = "";
+        for (String s : strings) {
+            if (s.length() > maxLength) {
+                maxLength = s.length();
+                longestString = s;
+            }
+        }
+        return longestString;
     }
 
     /**
@@ -42,6 +48,19 @@ public class Lesson4_FlowControl {
      * @return целочисленный результат выполнения операции
      */
     public static int task2(int i, int k, char operation) {
-        return 0;
+        switch (operation) {
+            case ('+'):
+                return i + k;
+            case ('-'):
+                return i - k;
+            case ('*'):
+                return i * k;
+            case ('/'):
+                return k == 0 ? 0 : i / k;
+            case ('%'):
+                return k == 0 ? 0 : i % k;
+            default:
+                return 0;
+        }
     }
 }
