@@ -37,13 +37,13 @@ public class FootballPlayer extends Athlete {
     }
 
     public PlayerRole getRole() {
-        if (role == null) {
-            throw new IllegalArgumentException("Invalid player role");
-        }
         return role;
     }
 
     public void setRole(PlayerRole role) {
+        if (role == null) {
+            throw new IllegalArgumentException("Invalid player role");
+        }
         this.role = role;
     }
 }
