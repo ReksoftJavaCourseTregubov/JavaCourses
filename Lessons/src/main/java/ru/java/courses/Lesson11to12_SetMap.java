@@ -58,7 +58,7 @@ public class Lesson11to12_SetMap {
      */
     public static User task1(Collection<User> source) {
         Comparator<User> comparator = Comparator.comparing(User::getName).thenComparing(User::getAge);
-        return source.stream().sorted(comparator)
+        return source.stream()
                 .collect(Collectors.toCollection(() -> new TreeSet<>(comparator))).last();
     }
 

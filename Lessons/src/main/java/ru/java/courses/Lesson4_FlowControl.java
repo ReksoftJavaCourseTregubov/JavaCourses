@@ -60,6 +60,7 @@ public class Lesson4_FlowControl {
             case ('%'):
                 return k == 0 ? 0 : i % k;
             default:
+                System.err.println("Unsupported operation: " + operation);
                 return 0;
         }
     }

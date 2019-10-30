@@ -58,10 +58,15 @@ public class FootballTeam {
 
 
     public void addPlayers(FootballPlayer... players) {
-        this.players.addAll(Arrays.asList(players));
+        for (FootballPlayer p : players) {
+            addPlayer(p);
+        }
     }
 
     public void addPlayer(FootballPlayer player) {
+        if (players.size() + 1 > getMaxPlayersCount()) {
+            throw new IllegalStateException("The limit of players in the team exceeded");
+        }
         this.players.add(player);
     }
 
