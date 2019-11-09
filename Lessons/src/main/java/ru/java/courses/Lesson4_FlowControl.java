@@ -17,11 +17,9 @@ public class Lesson4_FlowControl {
      * @return самую длинную строку из полученного массива
      */
     public static String task1(String[] strings) {
-        int maxLength = 0;
         String longestString = "";
         for (String s : strings) {
-            if (s.length() > maxLength) {
-                maxLength = s.length();
+            if (s.length() > longestString.length()) {
                 longestString = s;
             }
         }
